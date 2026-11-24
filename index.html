@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kraken It' Media | Indie games from the deep</title>
+<meta name="description" content="Kraken It' Media is an independent game studio. Knights of Xyphos, a pixel-art fantasy RPG where every attack is a d20 roll you can see, has a free demo out now on itch.io.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kraken It' Media">
+<meta property="og:title" content="Knights of Xyphos | free demo from Kraken It' Media">
+<meta property="og:description" content="A pixel-art fantasy RPG where every attack is a d20 roll you can see. Play the free demo on itch.io.">
+<meta property="og:image" content="https://krakenitmedia.com/assets/kox/social_card_1200x630.jpg">
+<meta property="og:url" content="https://krakenitmedia.com/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@KrakenitMedia">
+<meta name="theme-color" content="#0b0a14">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/brand/favicon-32.png">
+<link rel="icon" type="image/svg+xml" href="assets/brand/kraken.svg">
+<link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pixelify+Sans:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0b0a14; --deep:#120f24; --panel:#1a1631; --panel-2:#221d3f; --line:#2f2852;
+  --text:#ece9f7; --muted:#a7a1c2; --dim:#7a7499;
+  --teal:#3ee6c4; --teal-d:#1fa58c;
+  --rose:#e0457b; --gold:#f3c152; --violet:#8b6cf0;
+  --radius:14px; --max:1180px;
+  --pixel:"Pixelify Sans", ui-monospace, monospace;
+  --sans:"Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--ink);color:var(--text);font-family:var(--sans);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--teal);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+.pixel{image-rendering:pixelated}
+.skip{position:absolute;left:-999px;top:8px;background:var(--teal);color:var(--ink);padding:8px 14px;border-radius:8px;z-index:100}
+.skip:focus{left:8px}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:6px}
+
+/* ---------- nav ---------- */
+.nav{position:sticky;top:0;z-index:50;background:rgba(11,10,20,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.06)}
+.nav .wrap{display:flex;align-items:center;gap:20px;height:68px}
+.brand{display:flex;align-items:center;gap:12px;color:var(--text);font-family:var(--pixel);font-weight:700;font-size:21px;letter-spacing:.3px;white-space:nowrap}
+.brand:hover{text-decoration:none}
+.brand img{width:38px;height:auto}
+.brand span em{font-style:normal;color:var(--teal)}
+.nav ul{list-style:none;display:flex;gap:6px;margin:0 0 0 auto;padding:0}
+.nav ul a{display:block;padding:8px 12px;border-radius:8px;color:var(--muted);font-weight:500;font-size:15px}
+.nav ul a:hover{color:var(--text);background:rgba(255,255,255,.05);text-decoration:none}
+.menu-btn{display:none;margin-left:auto;background:none;border:1px solid var(--line);color:var(--text);border-radius:8px;padding:8px 12px;font:inherit;font-size:15px;cursor:pointer}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;gap:10px;padding:13px 22px;border-radius:10px;font-weight:600;font-size:16px;border:2px solid transparent;cursor:pointer;transition:transform .12s ease, background .15s ease, border-color .15s ease;font-family:var(--sans);line-height:1.2}
+.btn:hover{text-decoration:none;transform:translateY(-1px)}
+.btn-primary{background:var(--gold);color:#2a1606;box-shadow:0 4px 0 #b4842a}
+.btn-primary:hover{background:#ffd06b}
+.btn-ghost{background:rgba(11,10,20,.55);color:var(--text);border-color:rgba(255,255,255,.28)}
+.btn-ghost:hover{border-color:var(--text)}
+.btn-teal{background:var(--teal);color:var(--ink);box-shadow:0 4px 0 var(--teal-d)}
+.btn svg{width:20px;height:20px;flex:none}
+
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:620px;display:flex;align-items:flex-end;overflow:hidden;isolation:isolate}
+.hero-bg{position:absolute;inset:0;z-index:-2;background:url("assets/kox/art/chase.jpg") 70% 40%/cover no-repeat;image-rendering:pixelated}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(11,10,20,.2) 0%,rgba(11,10,20,.3) 45%,rgba(11,10,20,.9) 85%,var(--ink) 100%),linear-gradient(90deg,rgba(11,10,20,.85) 0%,rgba(11,10,20,.35) 45%,rgba(11,10,20,0) 70%)}
+.hero .wrap{width:100%;padding-top:120px;padding-bottom:64px}
+.badge{display:inline-flex;align-items:center;gap:8px;font-family:var(--pixel);font-size:15px;letter-spacing:.5px;text-transform:uppercase;background:var(--rose);color:#fff;padding:6px 12px;border-radius:6px;box-shadow:0 3px 0 #8f2148}
+.badge .dot{width:8px;height:8px;border-radius:50%;background:#fff;animation:pulse 1.6s infinite}
+@keyframes pulse{50%{opacity:.25}}
+.hero-logo{width:min(560px,92%);margin:18px 0 8px;filter:drop-shadow(0 6px 18px rgba(0,0,0,.6))}
+.hero p.lede{font-size:20px;max-width:560px;color:#f3f0ff;margin:6px 0 26px;text-shadow:0 2px 10px rgba(0,0,0,.7)}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:14px}
+.hero small{display:block;margin-top:16px;color:var(--muted);font-size:14px}
+
+/* ---------- sections ---------- */
+section{padding:88px 0}
+.eyebrow{font-family:var(--pixel);color:var(--teal);font-size:16px;letter-spacing:1.2px;text-transform:uppercase;margin:0 0 10px}
+h2{font-size:clamp(30px,4vw,44px);line-height:1.12;margin:0 0 16px;letter-spacing:-.5px}
+h3{font-size:22px;margin:0 0 8px;line-height:1.25}
+.sub{color:var(--muted);max-width:640px;margin:0 0 40px;font-size:18px}
+
+/* studio strip */
+.studio{padding:56px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.studio .wrap{display:grid;grid-template-columns:auto 1fr;gap:32px;align-items:center}
+.studio img{width:96px}
+.studio p{margin:0;font-size:19px;color:#d9d4ee;max-width:820px}
+.studio strong{color:var(--text)}
+
+/* xyphos */
+.kox{background:radial-gradient(1200px 500px at 85% 0%,rgba(224,69,123,.14),transparent 60%),radial-gradient(900px 500px at 0% 100%,rgba(139,108,240,.12),transparent 60%)}
+.kox .eyebrow{color:var(--gold)}
+.feature-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin:0 0 56px}
+.feature{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+.feature .ico{font-family:var(--pixel);font-size:26px;color:var(--gold);line-height:1;margin-bottom:12px}
+.feature p{margin:0;color:var(--muted);font-size:15.5px}
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.gallery button{all:unset;cursor:zoom-in;display:block;border-radius:10px;overflow:hidden;border:1px solid var(--line);position:relative;aspect-ratio:16/9;background:var(--panel)}
+.gallery button:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.gallery img{width:100%;height:100%;object-fit:cover;image-rendering:pixelated;transition:transform .3s ease}
+.gallery button:hover img{transform:scale(1.05)}
+.gallery button span{position:absolute;left:0;right:0;bottom:0;padding:22px 10px 8px;font-size:13px;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.8));opacity:0;transition:opacity .2s}
+.gallery button:hover span,.gallery button:focus-visible span{opacity:1}
+.cast-head{display:flex;align-items:end;justify-content:space-between;gap:20px;margin:64px 0 22px}
+.cast-head h3{font-size:26px;margin:0}
+.cast-head p{margin:0;color:var(--muted)}
+.cast{display:grid;grid-template-columns:repeat(8,1fr);gap:12px}
+.cast figure{margin:0;text-align:center}
+.cast img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:12px;border:2px solid var(--line);image-rendering:pixelated;background:var(--panel)}
+.cast figcaption{font-family:var(--pixel);font-size:17px;margin-top:8px}
+.art-strip{display:grid;grid-template-columns:2fr 1fr 1fr;gap:12px;margin-top:56px}
+.art-strip button{all:unset;cursor:zoom-in;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+.art-strip img{width:100%;height:100%;object-fit:cover;image-rendering:pixelated;aspect-ratio:16/9}
+.art-strip button:first-child img{aspect-ratio:auto}
+.kox-cta{margin-top:48px;display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+
+/* games */
+.games{background:var(--deep);border-top:1px solid rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.05)}
+.game-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column}
+.card .art{aspect-ratio:16/9;position:relative;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;overflow:hidden}
+.card .art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;image-rendering:pixelated}
+.card .art .ph{font-family:var(--pixel);font-size:30px;line-height:1.05;color:#fff;text-shadow:0 3px 0 rgba(0,0,0,.35);position:relative}
+.card .art .ph small{display:block;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;opacity:.75;margin-top:10px;font-family:var(--sans);font-weight:600;text-shadow:none}
+.card .body{padding:22px;display:flex;flex-direction:column;gap:10px;flex:1}
+.card p{margin:0;color:var(--muted);font-size:15.5px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:8px}
+.tag{font-size:12px;font-weight:600;letter-spacing:.4px;text-transform:uppercase;padding:4px 9px;border-radius:999px;background:rgba(255,255,255,.06);color:var(--muted)}
+.tag.live{background:rgba(62,230,196,.14);color:var(--teal)}
+.tag.adult{background:rgba(224,69,123,.16);color:#ff8fb3}
+.card .more{font-weight:600;font-size:15px}
+.ph-mm{background:linear-gradient(135deg,#7a2f1b,#c9692c 55%,#f0b04a)}
+.ph-fhear{background:linear-gradient(135deg,#0f4c6e,#2189a8 55%,#7fd6d0)}
+.ph-lb{background:linear-gradient(135deg,#1d2b6b,#2f6b3e 60%,#d9b63a)}
+.ph-lh{background:linear-gradient(135deg,#3b0d1f,#8c1c3d 55%,#d8a03a)}
+.ph-sl{background:radial-gradient(circle at 70% 30%,#c06bff 0,#4b1d8f 30%,#0c0a28 70%)}
+
+/* mature gate */
+.mature{margin-top:56px;border:1px solid rgba(224,69,123,.35);border-radius:18px;padding:32px;background:linear-gradient(180deg,rgba(224,69,123,.07),rgba(224,69,123,.02))}
+.mature-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;margin-bottom:24px}
+.mature-head h3{font-size:26px;margin:0}
+.mature-head p{margin:4px 0 0;color:var(--muted)}
+.gate{display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;padding:34px 16px;border:1px dashed rgba(255,255,255,.18);border-radius:14px}
+.gate p{margin:0;color:var(--muted);max-width:520px}
+.gate .row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.btn-rose{background:var(--rose);color:#fff;box-shadow:0 4px 0 #8f2148}
+.mature-list[hidden]{display:none}
+.mature .note{margin:20px 0 0;font-size:14px;color:var(--dim)}
+
+/* merch */
+.merch-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:20px}
+.merch{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:26px;display:flex;flex-direction:column;gap:12px;position:relative;overflow:hidden}
+.merch.big{background:linear-gradient(140deg,#2a1d4a,#1a1631);flex-direction:row;align-items:center;gap:22px}
+.merch .mug{width:150px;flex:none;position:relative}
+.merch .mug .cup{width:120px;height:140px;background:#f6f3ff;border-radius:8px 8px 18px 18px;position:relative;overflow:hidden;box-shadow:inset -14px 0 0 rgba(0,0,0,.08)}
+.merch .mug .cup img{position:absolute;inset:14px 10px auto;width:100px;border-radius:8px;image-rendering:pixelated}
+.merch .mug .handle{position:absolute;left:112px;top:30px;width:40px;height:66px;border:12px solid #f6f3ff;border-left:none;border-radius:0 30px 30px 0}
+.merch p{margin:0;color:var(--muted);font-size:15.5px}
+.soon{align-self:flex-start;font-family:var(--pixel);font-size:14px;text-transform:uppercase;letter-spacing:1px;color:var(--gold);border:1px solid rgba(243,193,82,.45);padding:3px 10px;border-radius:6px}
+.stickers{display:flex;gap:10px;margin-bottom:4px}
+.stickers img{width:64px;height:64px;border-radius:50%;border:4px solid #fff;object-fit:cover;image-rendering:pixelated;transform:rotate(-6deg);box-shadow:0 4px 12px rgba(0,0,0,.4)}
+.stickers img:nth-child(2){transform:rotate(5deg)}
+.stickers img:nth-child(3){transform:rotate(-2deg)}
+
+/* community */
+.links{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.link{display:flex;align-items:center;gap:16px;padding:20px;border-radius:var(--radius);background:var(--panel);border:1px solid var(--line);color:var(--text);transition:border-color .15s, transform .12s}
+.link:hover{text-decoration:none;border-color:var(--teal);transform:translateY(-2px)}
+.link .lg{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex:none}
+.link .lg svg{width:24px;height:24px}
+.link b{display:block;font-size:17px}
+.link span{color:var(--muted);font-size:14.5px}
+.link.disabled{opacity:.55;pointer-events:none}
+
+/* footer */
+footer{padding:48px 0 60px;border-top:1px solid rgba(255,255,255,.06);color:var(--dim);font-size:14.5px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between}
+footer .brand{font-size:18px}
+footer .brand img{width:30px}
+
+/* lightbox */
+.lb{position:fixed;inset:0;z-index:200;background:rgba(5,4,12,.94);display:none;align-items:center;justify-content:center;padding:4vh 4vw;flex-direction:column;gap:14px}
+.lb.open{display:flex}
+.lb img{max-width:100%;max-height:82vh;image-rendering:pixelated;border-radius:8px;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+.lb p{margin:0;color:var(--muted);text-align:center}
+.lb button{position:absolute;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:#fff;width:48px;height:48px;border-radius:50%;font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.lb button:hover{background:rgba(255,255,255,.16)}
+.lb .x{top:20px;right:20px}
+.lb .prev{left:20px;top:50%}
+.lb .next{right:20px;top:50%}
+
+/* responsive */
+@media (max-width:1020px){
+  .feature-grid{grid-template-columns:repeat(2,1fr)}
+  .cast{grid-template-columns:repeat(4,1fr)}
+  .game-grid{grid-template-columns:repeat(2,1fr)}
+  .merch-grid{grid-template-columns:1fr 1fr}
+  .merch.big{grid-column:1/-1}
+  .links{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:760px){
+  body{font-size:16px}
+  .nav ul{display:none;position:absolute;top:68px;left:0;right:0;flex-direction:column;background:var(--ink);border-bottom:1px solid var(--line);padding:10px 16px 16px}
+  .nav ul.open{display:flex}
+  .menu-btn{display:block}
+  .hero{min-height:560px}
+  .hero .wrap{padding-bottom:44px}
+  section{padding:64px 0}
+  .studio .wrap{grid-template-columns:1fr;gap:16px}
+  .studio img{width:72px}
+  .gallery{grid-template-columns:repeat(2,1fr)}
+  .art-strip{grid-template-columns:1fr 1fr}
+  .art-strip button:first-child{grid-column:1/-1}
+  .game-grid,.merch-grid,.links,.feature-grid{grid-template-columns:1fr}
+  .merch.big{flex-direction:column;align-items:flex-start}
+  .mature{padding:22px}
+  .cast-head{flex-direction:column;align-items:flex-start}
+  .lb .prev,.lb .next{top:auto;bottom:24px}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Kraken It' Media home">
+      <img src="assets/brand/kraken.svg" alt="" class="pixel" width="38" height="34">
+      <span>Kraken It' <em>Media</em></span>
+    </a>
+    <button class="menu-btn" aria-expanded="false" aria-controls="navlinks">Menu</button>
+    <ul id="navlinks">
+      <li><a href="#xyphos">Knights of Xyphos</a></li>
+      <li><a href="#games">Games</a></li>
+      <li><a href="#merch">Merch</a></li>
+      <li><a href="#community">Community</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="top" aria-label="Knights of Xyphos">
+  <div class="hero-bg" role="img" aria-label="Sylphina and a thief flee a mob of bandits through a moonlit town"></div>
+  <div class="wrap">
+    <!-- LAUNCH TEXT: change to "Free demo out now" once the demo is live -->
+    <span class="badge"><span class="dot"></span>Free demo: Wednesday, Nov 25</span>
+    <img class="hero-logo pixel" src="assets/kox/logo_transparent.png" alt="Knights of Xyphos: %$@%in' Son of a Goddess" width="900" height="435">
+    <p class="lede">A pixel-art fantasy RPG where every attack is a d20 roll you can see, the heroes bet fights on slot machines, and the elf hits a baseball through a slime.</p>
+    <div class="ctas">
+      <!-- DEMO LINK: point this at the game's own itch.io page once it's published -->
+      <a class="btn btn-primary" href="https://krakenitmedia.itch.io/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+        Get the demo on itch.io
+      </a>
+      <a class="btn btn-ghost" href="#xyphos">See the game</a>
+    </div>
+    <small>Free to play. Follow us on itch.io to get notified the moment it's up.</small>
+  </div>
+</section>
+
+<!-- ================= STUDIO ================= -->
+<section class="studio" aria-label="About the studio">
+  <div class="wrap">
+    <img src="assets/brand/kraken.svg" alt="" class="pixel" width="96" height="86">
+    <p><strong>Kraken It' Media</strong> is an independent game studio making RPGs, sims and stories with big personalities: pixel-art adventures, tavern-management chaos, and the occasional game about running a hearing clinic. Six projects in the works, one demo out the door.</p>
+  </div>
+</section>
+
+<!-- ================= XYPHOS ================= -->
+<section class="kox" id="xyphos">
+  <div class="wrap">
+    <p class="eyebrow">Now playing</p>
+    <h2>Knights of Xyphos</h2>
+    <p class="sub">Eight heroes, one Demon Lord, and a party that is mostly held together by spite. Turn-based battles you can read at a glance, written with a sense of humor that doesn't take any of it seriously.</p>
+
+    <div class="feature-grid">
+      <div class="feature"><div class="ico">d20</div><h3>Rolls you can see</h3><p>Every attack is a visible d20 roll. Crits, whiffs and miracles happen right in front of you.</p></div>
+      <div class="feature"><div class="ico">!!</div><h3>Limit Breaks</h3><p>Full-screen cut-ins when a hero finally snaps. Some of them are dignified. Most are not.</p></div>
+      <div class="feature"><div class="ico">777</div><h3>Bet the fight</h3><p>Rou gambles a whole battle on a slot machine. "Everything on red, darling."</p></div>
+      <div class="feature"><div class="ico">&gt;_</div><h3>Commentary included</h3><p>The battle log talks back. Your party has opinions about every hit.</p></div>
+    </div>
+
+    <div class="gallery" id="gallery">
+      <button data-full="assets/kox/shots/kox_01_title.jpg" data-cap="The title screen"><img src="assets/kox/thumbs/kox_01_title.jpg" alt="The title screen" loading="lazy" width="640" height="360"><span>The title screen</span></button>
+      <button data-full="assets/kox/shots/kox_02_prologue_demon_lord.jpg" data-cap="The Prologue: eight heroes against the Demon Lord"><img src="assets/kox/thumbs/kox_02_prologue_demon_lord.jpg" alt="The Prologue: eight heroes against the Demon Lord" loading="lazy" width="640" height="360"><span>Eight heroes against the Demon Lord</span></button>
+      <button data-full="assets/kox/shots/kox_03_d20_roll.jpg" data-cap="Every attack is a d20 roll you can see"><img src="assets/kox/thumbs/kox_03_d20_roll.jpg" alt="Every attack is a d20 roll you can see" loading="lazy" width="640" height="360"><span>Every attack is a d20 roll</span></button>
+      <button data-full="assets/kox/shots/kox_04_limit_break.jpg" data-cap="A Limit Break cut-in"><img src="assets/kox/thumbs/kox_04_limit_break.jpg" alt="A Limit Break cut-in" loading="lazy" width="640" height="360"><span>A Limit Break cut-in</span></button>
+      <button data-full="assets/kox/shots/kox_05_jackpot.jpg" data-cap="Rou bets the fight on a slot machine"><img src="assets/kox/thumbs/kox_05_jackpot.jpg" alt="Rou bets the fight on a slot machine" loading="lazy" width="640" height="360"><span>Rou bets the fight on a slot machine</span></button>
+      <button data-full="assets/kox/shots/kox_06_havenbrook.jpg" data-cap="Havenbrook, the first town"><img src="assets/kox/thumbs/kox_06_havenbrook.jpg" alt="Havenbrook, the first town" loading="lazy" width="640" height="360"><span>Havenbrook, the first town</span></button>
+      <button data-full="assets/kox/shots/kox_07_foaming_mug.jpg" data-cap="The Foaming Mug tavern"><img src="assets/kox/thumbs/kox_07_foaming_mug.jpg" alt="The Foaming Mug tavern" loading="lazy" width="640" height="360"><span>The Foaming Mug tavern</span></button>
+      <button data-full="assets/kox/shots/kox_08_morningwood.jpg" data-cap="Morningwood Forest"><img src="assets/kox/thumbs/kox_08_morningwood.jpg" alt="Morningwood Forest" loading="lazy" width="640" height="360"><span>Morningwood Forest</span></button>
+      <button data-full="assets/kox/shots/kox_09_bandit_king_tent.jpg" data-cap="The Bandit King, with the barmaid over the lava"><img src="assets/kox/thumbs/kox_09_bandit_king_tent.jpg" alt="The Bandit King, with the barmaid over the lava" loading="lazy" width="640" height="360"><span>The Bandit King</span></button>
+      <button data-full="assets/kox/shots/kox_10_line_drive.jpg" data-cap="Sylphina hits a baseball through a slime"><img src="assets/kox/thumbs/kox_10_line_drive.jpg" alt="Sylphina hits a baseball through a slime" loading="lazy" width="640" height="360"><span>Sylphina hits a baseball through a slime</span></button>
+      <button data-full="assets/kox/shots/kox_11_sylphina_rooms.jpg" data-cap="Hiro wakes up in the researcher's rooms"><img src="assets/kox/thumbs/kox_11_sylphina_rooms.jpg" alt="Hiro wakes up in the researcher's rooms" loading="lazy" width="640" height="360"><span>The researcher's rooms</span></button>
+      <button data-full="assets/kox/shots/kox_12_forest_fight.jpg" data-cap="A road fight, with commentary"><img src="assets/kox/thumbs/kox_12_forest_fight.jpg" alt="A road fight, with commentary" loading="lazy" width="640" height="360"><span>A road fight, with commentary</span></button>
+    </div>
+
+    <div class="cast-head">
+      <h3>The party</h3>
+      <p>Heroes, technically.</p>
+    </div>
+    <div class="cast">
+      <figure><img src="assets/kox/cast/hiro.png" alt="Hiro" loading="lazy" width="508" height="508"><figcaption>Hiro</figcaption></figure>
+      <figure><img src="assets/kox/cast/sylphina.png" alt="Sylphina" loading="lazy" width="532" height="532"><figcaption>Sylphina</figcaption></figure>
+      <figure><img src="assets/kox/cast/rou.png" alt="Rou" loading="lazy" width="540" height="540"><figcaption>Rou</figcaption></figure>
+      <figure><img src="assets/kox/cast/regulus.png" alt="Regulus" loading="lazy" width="504" height="504"><figcaption>Regulus</figcaption></figure>
+      <figure><img src="assets/kox/cast/dakota.png" alt="Dakota" loading="lazy" width="540" height="540"><figcaption>Dakota</figcaption></figure>
+      <figure><img src="assets/kox/cast/orfeo.png" alt="Orfeo" loading="lazy" width="512" height="512"><figcaption>Orfeo</figcaption></figure>
+      <figure><img src="assets/kox/cast/bru.png" alt="Bru" loading="lazy" width="528" height="528"><figcaption>Bru</figcaption></figure>
+      <figure><img src="assets/kox/cast/mika.png" alt="Mika" loading="lazy" width="576" height="576"><figcaption>Mika</figcaption></figure>
+    </div>
+
+    <div class="art-strip" id="art">
+      <button data-full="assets/kox/art/moonshine_a.jpg" data-cap="From the trailer: a round at the Foaming Mug"><img src="assets/kox/art/moonshine_a.jpg" alt="Bru and Dakota toast with jugs of moonshine" loading="lazy"></button>
+      <button data-full="assets/kox/art/rou_aces.jpg" data-cap="From the trailer: Rou holds aces"><img src="assets/kox/art/rou_aces.jpg" alt="Rou fans a hand of aces over a pile of gold" loading="lazy"></button>
+      <button data-full="assets/kox/art/neet.jpg" data-cap="From the trailer: Sylphina, off duty"><img src="assets/kox/art/neet.jpg" alt="Sylphina reading under a blanket surrounded by books" loading="lazy"></button>
+    </div>
+
+    <div class="kox-cta">
+      <a class="btn btn-primary" href="https://krakenitmedia.itch.io/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+        Play the free demo
+      </a>
+      <a class="btn btn-ghost" href="https://discord.gg/khUBjHHwy" target="_blank" rel="noopener">Tell us what you think on Discord</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GAMES ================= -->
+<section class="games" id="games">
+  <div class="wrap">
+    <p class="eyebrow">The slate</p>
+    <h2>Games in development</h2>
+    <p class="sub">Some are close, some are a gleam in a tentacle. Follow along on Discord to see them grow.</p>
+
+    <div class="game-grid">
+      <article class="card">
+        <div class="art"><img src="assets/kox/social_card_1200x630.jpg" alt="Knights of Xyphos key art" loading="lazy"></div>
+        <div class="body">
+          <h3>Knights of Xyphos</h3>
+          <p>Pixel-art fantasy RPG with visible d20 combat, Limit Breaks and a party with no filter.</p>
+          <div class="tags"><span class="tag live">Free demo</span><span class="tag">RPG</span><span class="tag">Pixel art</span></div>
+          <a class="more" href="#xyphos">More about the game &rarr;</a>
+        </div>
+      </article>
+      <article class="card">
+        <div class="art ph-mm"><div class="ph">Meat &amp; Mead<small>Key art coming soon</small></div></div>
+        <div class="body">
+          <h3>Meat &amp; Mead</h3>
+          <p>A butcher wakes up in another world. Fight monsters in the dungeon by day, cook them and run the tavern by night. Dave the Diver meets a classic RPG.</p>
+          <div class="tags"><span class="tag">In development</span><span class="tag">Adventure RPG</span><span class="tag">Isekai</span></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="art ph-fhear"><div class="ph">Can You Fhear<br>Me Now?<small>Key art coming soon</small></div></div>
+        <div class="body">
+          <h3>Can You Fhear Me Now?</h3>
+          <p>Run a hearing clinic using real audiometry skills. A game anyone can pick up.</p>
+          <div class="tags"><span class="tag">In development</span><span class="tag">Sim</span><span class="tag">Everyone</span></div>
+        </div>
+      </article>
+    </div>
+
+    <!-- ===== 18+ section: age gate ===== -->
+    <div class="mature" id="mature">
+      <div class="mature-head">
+        <div>
+          <h3>Mature titles</h3>
+          <p>Adult games from the studio, for players 18 and older.</p>
+        </div>
+        <span class="tag adult">18+ only</span>
+      </div>
+
+      <div class="gate" id="gate">
+        <p>This section lists games with adult content. Please confirm you are 18 or older (or the age of majority where you live) to continue.</p>
+        <div class="row">
+          <button class="btn btn-rose" id="gate-yes" type="button">I'm 18 or older</button>
+          <a class="btn btn-ghost" href="#merch">Take me back</a>
+        </div>
+      </div>
+
+      <div class="mature-list" id="mature-list" hidden>
+        <div class="game-grid">
+          <article class="card">
+            <div class="art ph-lb"><div class="ph">Lucky Break<small>18+ &middot; in development</small></div></div>
+            <div class="body">
+              <h3>Lucky Break</h3>
+              <p>An anime turn-based RPG visual novel. Felix has no powers at a university full of them. He does have absurd, reality-bending luck.</p>
+              <div class="tags"><span class="tag adult">18+</span><span class="tag">RPG</span><span class="tag">Visual novel</span></div>
+            </div>
+          </article>
+          <article class="card">
+            <div class="art ph-lh"><div class="ph">Lucky Hand<small>18+ &middot; in development</small></div></div>
+            <div class="body">
+              <h3>Lucky Hand</h3>
+              <p>A Lucky Break spinoff. Texas Hold'em with superpowers and clothing destruction, a throwback to the classic strip poker games.</p>
+              <div class="tags"><span class="tag adult">18+</span><span class="tag">Card game</span><span class="tag">Spinoff</span></div>
+            </div>
+          </article>
+          <article class="card">
+            <div class="art ph-sl"><div class="ph">StarLust<br>Empires<small>18+ &middot; in development</small></div></div>
+            <div class="body">
+              <h3>StarLust Empires</h3>
+              <p>Turn-based space conquest in the spirit of Master of Orion. Build an empire, conquer the galaxy.</p>
+              <div class="tags"><span class="tag adult">18+</span><span class="tag">4X strategy</span><span class="tag">Space</span></div>
+            </div>
+          </article>
+        </div>
+        <p class="note">Development updates, previews and early builds for our adult titles are posted on <a href="https://subscribestar.adult/presidentkraken" target="_blank" rel="noopener">SubscribeStar (18+)</a>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MERCH ================= -->
+<section id="merch">
+  <div class="wrap">
+    <p class="eyebrow">Merch</p>
+    <h2>Take the party home</h2>
+    <p class="sub">Printed on demand and shipped straight to you. The shop opens soon; join the Discord to hear first.</p>
+    <div class="merch-grid">
+      <div class="merch big">
+        <div class="mug" aria-hidden="true"><div class="cup"><img src="assets/kox/cast/sylphina.png" alt=""></div><div class="handle"></div></div>
+        <div>
+          <span class="soon">Coming soon</span>
+          <h3 style="margin-top:12px">The Sylphina Mug</h3>
+          <p>Your morning coffee, supervised by Xyphos's most questionable researcher.</p>
+        </div>
+      </div>
+      <div class="merch">
+        <div class="stickers" aria-hidden="true">
+          <img src="assets/kox/cast/rou.png" alt=""><img src="assets/kox/cast/hiro.png" alt=""><img src="assets/kox/cast/bru.png" alt="">
+        </div>
+        <span class="soon">Coming soon</span>
+        <h3>Sticker packs</h3>
+        <p>The whole Knights of Xyphos party, die-cut for laptops, water bottles and arcade cabinets.</p>
+      </div>
+      <div class="merch">
+        <img src="assets/brand/kraken.svg" alt="" class="pixel" style="width:72px" aria-hidden="true">
+        <span class="soon">Coming soon</span>
+        <h3>Studio gear</h3>
+        <p>Kraken It' Media shirts and hats, for people who like their games weird.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= COMMUNITY ================= -->
+<section id="community" class="games">
+  <div class="wrap">
+    <p class="eyebrow">Find us</p>
+    <h2>Join the crew</h2>
+    <p class="sub">Playtests, dev updates, art drops and the occasional poll that decides what happens next.</p>
+    <div class="links">
+      <a class="link" href="https://discord.gg/khUBjHHwy" target="_blank" rel="noopener">
+        <span class="lg" style="background:#5865f2"><svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M20.3 4.4A19.6 19.6 0 0 0 15.4 3l-.6 1.3a18 18 0 0 0-5.6 0L8.6 3a19.5 19.5 0 0 0-4.9 1.5C.6 9.1-.3 13.6.1 18a19.8 19.8 0 0 0 6 3l1.3-2a12.7 12.7 0 0 1-2-1l.5-.4a14 14 0 0 0 12.2 0l.5.4-2 1 1.3 2a19.7 19.7 0 0 0 6-3c.5-5.1-.8-9.6-3.6-13.6zM8.1 15.3c-1.2 0-2.2-1.1-2.2-2.4s1-2.4 2.2-2.4 2.2 1.1 2.2 2.4-1 2.4-2.2 2.4zm7.8 0c-1.2 0-2.2-1.1-2.2-2.4s1-2.4 2.2-2.4 2.2 1.1 2.2 2.4-1 2.4-2.2 2.4z"/></svg></span>
+        <div><b>Discord</b><span>Hang out, report bugs, see builds first</span></div>
+      </a>
+      <a class="link" href="https://x.com/KrakenitMedia" target="_blank" rel="noopener">
+        <span class="lg" style="background:#000;border:1px solid #333"><svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M17.8 3h3.1l-6.8 7.7L22 21h-6.2l-4.9-6.4L5.3 21H2.2l7.2-8.3L1.8 3h6.4l4.4 5.8L17.8 3zm-1.1 16.2h1.7L7.4 4.7H5.6l11.1 14.5z"/></svg></span>
+        <div><b>X</b><span>@KrakenitMedia</span></div>
+      </a>
+      <a class="link" href="https://krakenitmedia.itch.io/" target="_blank" rel="noopener">
+        <span class="lg" style="background:#fa5c5c"><svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M3.1 2.2C2.1 2.8.1 5.1 0 5.7v1C0 8 1.2 9.1 2.3 9.1c1.3 0 2.4-1.1 2.4-2.4 0 1.3 1 2.4 2.4 2.4 1.3 0 2.3-1.1 2.3-2.4 0 1.3 1.1 2.4 2.5 2.4h.1c1.3 0 2.5-1.1 2.5-2.4 0 1.3 1 2.4 2.3 2.4 1.3 0 2.4-1.1 2.4-2.4 0 1.3 1.1 2.4 2.4 2.4C23 9.1 24 8 24 6.7v-1c-.1-.6-2.1-2.9-3.1-3.5-3.1-.1-5.3-.1-8.9-.2-3.6 0-8.5.1-8.9.2zm6.8 6.9a2.7 2.7 0 0 1-4.6 0 2.7 2.7 0 0 1-2.3 1.3h-.3c-.2 2.3-.2 4.7-.2 5.4 0 3.8-.4 4.8 1.5 5.4 1.9.6 4.6.7 6.6.7h2.8c2 0 4.7-.1 6.6-.7 1.9-.6 1.5-1.6 1.5-5.4 0-.7 0-3.1-.2-5.4h-.3c-1 0-1.8-.5-2.3-1.3a2.7 2.7 0 0 1-4.6 0A2.7 2.7 0 0 1 12 10.4a2.7 2.7 0 0 1-2.1-1.3zm-.6 3.6c.8 0 1.5 0 2.4.9l1.1-.1 1.1.1c.9-.9 1.6-.9 2.4-.9.4 0 1.9 0 3 3l1.1 4c.8 3-.3 3.1-1.6 3.1-2-.1-3.1-1.5-3.1-3a26 26 0 0 1-5.7 0c0 1.5-1.1 2.9-3.1 3-1.3 0-2.4-.1-1.6-3.1l1.1-4c1-3 2.6-3 2.9-3zM12 14.8s-2.3 2.1-2.7 2.8l1.5-.1v1.3h2.4v-1.3l1.5.1c-.4-.7-2.7-2.8-2.7-2.8z"/></svg></span>
+        <div><b>itch.io</b><span>Demos and releases</span></div>
+      </a>
+      <a class="link" href="https://www.royalroad.com/profile/1048895" target="_blank" rel="noopener">
+        <span class="lg" style="background:#2c3e50"><svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M5 3h10a4 4 0 0 1 4 4v14l-4-3H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm2 4v2h8V7H7zm0 4v2h6v-2H7z"/></svg></span>
+        <div><b>Royal Road</b><span>Read the stories</span></div>
+      </a>
+      <a class="link" href="https://buymeacoffee.com/krakenitmedia" target="_blank" rel="noopener">
+        <span class="lg" style="background:#ffdd00"><svg viewBox="0 0 24 24" fill="#1a1100" aria-hidden="true"><path d="M4 8h13v1h1.5a3 3 0 0 1 0 6H17a6 6 0 0 1-6 5H10a6 6 0 0 1-6-6V8zm13 3v2h1.5a1 1 0 0 0 0-2H17zM7 2c.6.8.6 1.7 0 2.5S6.4 6.2 7 7H5.6c-.6-.8-.6-1.7 0-2.5S6.2 2.8 5.6 2H7zm4 0c.6.8.6 1.7 0 2.5s-.6 1.7 0 2.5H9.6c-.6-.8-.6-1.7 0-2.5s.6-1.7 0-2.5H11z"/></svg></span>
+        <div><b>Buy Me a Coffee</b><span>Fuel the next build</span></div>
+      </a>
+      <span class="link disabled" aria-disabled="true">
+        <span class="lg" style="background:#f96854"><svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><circle cx="14.5" cy="9.5" r="6.5"/><rect x="2" y="3" width="3.5" height="18"/></svg></span>
+        <div><b>Patreon</b><span>Launching soon</span></div>
+      </span>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="#top"><img src="assets/brand/kraken.svg" alt="" class="pixel" width="30" height="27"><span>Kraken It' <em>Media</em></span></a>
+    <span>&copy; <span id="yr">2026</span> Kraken It' Media LLC. All rights reserved.</span>
+  </div>
+</footer>
+
+<!-- lightbox -->
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button class="x" type="button" aria-label="Close">&times;</button>
+  <button class="prev" type="button" aria-label="Previous image">&#8249;</button>
+  <img id="lb-img" alt="">
+  <p id="lb-cap"></p>
+  <button class="next" type="button" aria-label="Next image">&#8250;</button>
+</div>
+
+<script>
+(function(){
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // mobile menu
+  var btn = document.querySelector('.menu-btn'), list = document.getElementById('navlinks');
+  btn.addEventListener('click', function(){
+    var open = list.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open);
+  });
+  list.addEventListener('click', function(e){ if(e.target.tagName==='A'){ list.classList.remove('open'); btn.setAttribute('aria-expanded', false);} });
+
+  // age gate (remembered per browser when storage is available)
+  var KEY='kim_age_ok', gate=document.getElementById('gate'), mlist=document.getElementById('mature-list');
+  function reveal(){ gate.hidden=true; gate.style.display='none'; mlist.hidden=false; }
+  try{ if(localStorage.getItem(KEY)==='1') reveal(); }catch(e){}
+  document.getElementById('gate-yes').addEventListener('click', function(){
+    try{ localStorage.setItem(KEY,'1'); }catch(e){}
+    reveal();
+  });
+
+  // lightbox
+  var items = Array.prototype.slice.call(document.querySelectorAll('#gallery button, #art button'));
+  var lb=document.getElementById('lb'), img=document.getElementById('lb-img'), cap=document.getElementById('lb-cap'), idx=0, last=null;
+  function show(i){ idx=(i+items.length)%items.length; var b=items[idx]; img.src=b.dataset.full; img.alt=b.dataset.cap; cap.textContent=b.dataset.cap; }
+  function open(i){ last=document.activeElement; show(i); lb.classList.add('open'); document.body.style.overflow='hidden'; lb.querySelector('.x').focus(); }
+  function close(){ lb.classList.remove('open'); document.body.style.overflow=''; img.src=''; if(last) last.focus(); }
+  items.forEach(function(b,i){ b.addEventListener('click', function(){ open(i); }); });
+  lb.querySelector('.x').addEventListener('click', close);
+  lb.querySelector('.prev').addEventListener('click', function(){ show(idx-1); });
+  lb.querySelector('.next').addEventListener('click', function(){ show(idx+1); });
+  lb.addEventListener('click', function(e){ if(e.target===lb) close(); });
+  document.addEventListener('keydown', function(e){
+    if(!lb.classList.contains('open')) return;
+    if(e.key==='Escape') close();
+    if(e.key==='ArrowLeft') show(idx-1);
+    if(e.key==='ArrowRight') show(idx+1);
+  });
+})();
+</script>
+</body>
+</html>
