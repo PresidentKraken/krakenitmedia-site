@@ -1,7 +1,7 @@
 :root{
   --ink:#0b0a14; --deep:#120f24; --panel:#1a1631; --panel-2:#221d3f; --line:#2f2852;
   --text:#ece9f7; --muted:#a7a1c2; --dim:#7a7499;
-  --teal:#3ee6c4; --teal-d:#1fa58c;
+  --teal:#86e83d; --teal-d:#4c9e1c;
   --rose:#e0457b; --gold:#f3c152; --violet:#8b6cf0;
   --radius:14px; --max:1180px;
   --pixel:"Pixelify Sans", ui-monospace, monospace;
@@ -25,7 +25,7 @@ a:hover{text-decoration:underline}
 .nav .wrap{display:flex;align-items:center;gap:20px;height:68px}
 .brand{display:flex;align-items:center;gap:12px;color:var(--text);font-family:var(--pixel);font-weight:700;font-size:21px;letter-spacing:.3px;white-space:nowrap}
 .brand:hover{text-decoration:none}
-.brand img{width:38px;height:auto}
+.brand img{width:auto;height:40px}
 .brand span em{font-style:normal;color:var(--teal)}
 .nav ul{list-style:none;display:flex;gap:6px;margin:0 0 0 auto;padding:0}
 .nav ul a{display:block;padding:8px 12px;border-radius:8px;color:var(--muted);font-weight:500;font-size:15px}
@@ -65,7 +65,7 @@ h3{font-size:22px;margin:0 0 8px;line-height:1.25}
 /* studio strip */
 .studio{padding:56px 0;border-bottom:1px solid rgba(255,255,255,.06)}
 .studio .wrap{display:grid;grid-template-columns:auto 1fr;gap:32px;align-items:center}
-.studio img{width:96px}
+.studio img{width:100px}
 .studio p{margin:0;font-size:19px;color:#d9d4ee;max-width:820px}
 .studio strong{color:var(--text)}
 
@@ -108,7 +108,7 @@ h3{font-size:22px;margin:0 0 8px;line-height:1.25}
 .card p{margin:0;color:var(--muted);font-size:15.5px}
 .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:8px}
 .tag{font-size:12px;font-weight:600;letter-spacing:.4px;text-transform:uppercase;padding:4px 9px;border-radius:999px;background:rgba(255,255,255,.06);color:var(--muted)}
-.tag.live{background:rgba(62,230,196,.14);color:var(--teal)}
+.tag.live{background:rgba(134,232,61,.14);color:var(--teal)}
 .tag.adult{background:rgba(224,69,123,.16);color:#ff8fb3}
 .card .more{font-weight:600;font-size:15px}
 .ph-mm{background:linear-gradient(135deg,#7a2f1b,#c9692c 55%,#f0b04a)}
@@ -158,7 +158,7 @@ h3{font-size:22px;margin:0 0 8px;line-height:1.25}
 footer{padding:48px 0 60px;border-top:1px solid rgba(255,255,255,.06);color:var(--dim);font-size:14.5px}
 footer .wrap{display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between}
 footer .brand{font-size:18px}
-footer .brand img{width:30px}
+footer .brand img{width:auto;height:32px}
 
 /* lightbox */
 .lb{position:fixed;inset:0;z-index:200;background:rgba(5,4,12,.94);display:none;align-items:center;justify-content:center;padding:4vh 4vw;flex-direction:column;gap:14px}
