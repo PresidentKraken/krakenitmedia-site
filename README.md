@@ -9,6 +9,4 @@ Website for Kraken It' Media. Plain HTML/CSS, hosted on GitHub Pages.
 - `assets/brand/`: studio logo and icons (placeholder pixel kraken)
 - `assets/kox/`: Knights of Xyphos art
 
-Quick edits (home page and game page both have them):
-- Demo badge text: search for `LAUNCH TEXT`
-- Demo button link: search for `DEMO LINK`
+Quick edits:
